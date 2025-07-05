@@ -1,89 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: #fffbe7;
-            color: #444;
-            padding: 30px;
-            margin: 0;
-            transition: all 0.3s ease-in-out;
-        }
-        .container {
-            max-width: 700px;
-            margin: auto;
-            background: #fff;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #e76f51;
-        }
-        .buttons {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #ffcb77;
-            color: #333;
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #ffb347;
-        }
-        .content-section {
-            display: none;
-        }
-        .content-section.active {
-            display: block;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <h2>Biscuit: Almond London</h2>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                font-family: 'Comic Sans MS', cursive, sans-serif;
+                background: #fffbe7;
+                color: #444;
+                padding: 30px;
+                margin: 0;
+                transition: all 0.3s ease-in-out;
+            }
+            .container {
+                max-width: 700px;
+                margin: auto;
+                background: #fff;
+                padding: 25px;
+                border-radius: 15px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            }
+            h2 {
+                text-align: center;
+                color: #e76f51;
+            }
+            .buttons {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            button {
+                background-color: #ffcb77;
+                color: #333;
+                padding: 10px 20px;
+                margin: 5px;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            button:hover {
+                background-color: #ffb347;
+            }
+            .content-section {
+                display: none;
+            }
+            .content-section.active {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <h2>Biscuit: Kacang Mazola</h2>
 
-    <div class="buttons">
-        <button onclick="showSection('recipe')">Show Recipe</button>
-        <button onclick="showSection('history')">Show History</button>
+        <div class="buttons">
+            <button onclick="showSection('recipe')">Show Recipe</button>
+            <button onclick="showSection('history')">Show History</button>
+        </div>
+
+        <div id="recipe" class="content-section active">
+            <h3>Recipe</h3>
+            <ul>
+                <li>250g butter</li>
+                <li>3 tablespoon sweetened condensed milk</li>
+                <li>2 tablespoon ghee</li>
+                <li>1 egg yolk</li>
+                <li>1 teaspoon vanilla essence</li>
+                <li>2 tablespoon powdered milk</li>
+                <li>3 1/4 wheat flour</li>
+                <li>2 tablespoon corn flour</li>
+                <li>2 tablespoon custard flour</li>
+                <li>a little yellow food colouring</li>
+                <li>2 egg yolk</li>
+                <li>1/4 cup of fresh milk</li>
+                <li>2 drops of lemon yellow food colouring(for egg wash)</li>
+                <li>pineapple jam(shaped into small balls)</li>
+            </ul>
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Combine salt and wheat flour in a bowl and mix well. Sift the icing sugar into the flour mixture and add the ground peanuts.</li>
+                <li>Gradually add corn oil while kneading until a soft dough forms. Shape into small balls and arrange them on a baking tray. Place one roasted peanut on top of each cookie and press gently.</li>
+                <li>Mix egg yolks with yellow food coloring. Brush the tops of the cookies with this mixture. Preheat the oven to 170°C (adjust based on your oven) and bake for about 20–23 minutes until cooked.</li>
+                <li>Allow the cookies to cool completely before removing and storing them in an airtight container.</li>
+            </ol>
+                <p class="credit">Credit: <a href="https://cookpad.com/my/search/resepi%20biskut%20kacang%20mazola?event=search.suggestion&order=recent" target="_blank">cook_18547228</a></p>
+        </div>
+
+        <div id="history" class="content-section">
+            <h3>History</h3>
+            <p>Biskut Kacang Mazola became popular in Malaysia around the mid-20th century, inspired by local love for peanuts and the use of corn oil brands like Mazola, which gave the cookie its name. Traditionally made during festive seasons like Hari Raya, these peanut cookies became a staple on Malaysian kuih raya tables because of their rich, nutty flavor, crumbly texture, and simple, affordable ingredients. Over time, the recipe was shared and adapted among families, becoming a beloved classic passed down through generations.</p>
+        </div>
     </div>
 
-    <div id="recipe" class="content-section active">
-        <h3>Recipe</h3>
-        <ul>
-            <li>250g butter</li>
-            <li>90g icing sugar</li>
-            <li>1 egg yolk</li>
-            <li>300g plain flour</li>
-            <li>100g corn flour</li>
-            <li>Roasted almonds (whole)</li>
-            <li>Cooking chocolate for coating</li>
-            <li>Chocolate rice or chopped nuts for garnish</li>
-        </ul>
-        <p>Instructions: Mix butter, sugar, egg yolk, and flour. Wrap dough around almonds. Bake at 170°C for 20 mins. Dip in melted chocolate and garnish.</p>
-    </div>
-
-    <div id="history" class="content-section">
-        <h3>History</h3>
-        <p>Almond London cookies are popular festive treats in Malaysia, particularly during Hari Raya. These bite-sized biscuits consist of crunchy almonds wrapped in a buttery dough, coated in chocolate, and topped with sprinkles or nuts. The name likely references the European influence on Malaysian baking styles.</p>
-    </div>
-</div>
-
-<script>
-    function showSection(section) {
-        document.getElementById('recipe').classList.remove('active');
-        document.getElementById('history').classList.remove('active');
-        document.getElementById(section).classList.add('active');
-    }
-</script>
-</body>
-</html>
+    <script>
+        function showSection(section) {
+            document.getElementById('recipe').classList.remove('active');
+            document.getElementById('history').classList.remove('active');
+            document.getElementById(section).classList.add('active');
+        }
+    </script>
+    </body>
+    </html>
