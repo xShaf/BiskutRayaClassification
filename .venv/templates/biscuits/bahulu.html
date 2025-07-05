@@ -46,11 +46,24 @@
         .content-section.active {
             display: block;
         }
+        .note {
+            font-style: italic;
+            color: #666;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+        .credit {
+            margin-top: 30px;
+            font-style: italic;
+        }
+        .credit a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>Biscuit: Almond London</h2>
+    <h2>Biscuit: Bahulu</h2>
 
     <div class="buttons">
         <button onclick="showSection('recipe')">Show Recipe</button>
@@ -60,21 +73,32 @@
     <div id="recipe" class="content-section active">
         <h3>Recipe</h3>
         <ul>
-            <li>250g butter</li>
-            <li>90g icing sugar</li>
+            <li>5 eggs</li>
+            <li>1 teaspoon vanilla essence</li>
             <li>1 egg yolk</li>
-            <li>300g plain flour</li>
-            <li>100g corn flour</li>
-            <li>Roasted almonds (whole)</li>
-            <li>Cooking chocolate for coating</li>
-            <li>Chocolate rice or chopped nuts for garnish</li>
+            <li>1/2 cup sugar</li>
+            <li>1 cup all-purpose flour (also known as wheat flour)</li>
         </ul>
-        <p>Instructions: Mix butter, sugar, egg yolk, and flour. Wrap dough around almonds. Bake at 170°C for 20 mins. Dip in melted chocolate and garnish.</p>
+
+        <h3>Instructions</h3>
+         <ol>
+        <li>
+            Add sugar and eggs, then beat until well combined. Add vanilla essence and continue beating for 5 minutes.
+            <div class="note">(Beat until the mixture becomes fluffy and changes color for soft bahulu)</div>
+        </li>
+        <li>Add the flour and beat for another 2 minutes.</li>
+        <li>Preheat the oven to 150°C for 10 minutes together with the mold inside.</li>
+        <li>Remove the mold and grease it once with oil to prevent sticking.</li>
+        <li>Pour the batter into the mold, filling about 3/4 full. Bake at 150°C for 12 minutes or adjust based on your oven.</li>
+    </ol>
+
+        <p class="credit">Credit: <a href="https://cookpad.com/my/recipes/17313526?ref=search&search_term=bahulu" target="_blank">Mamy_Nurul</a></p>
     </div>
 
     <div id="history" class="content-section">
         <h3>History</h3>
-        <p>Almond London cookies are popular festive treats in Malaysia, particularly during Hari Raya. These bite-sized biscuits consist of crunchy almonds wrapped in a buttery dough, coated in chocolate, and topped with sprinkles or nuts. The name likely references the European influence on Malaysian baking styles.</p>
+        <p>According to the history of the olden days, the word "BAHULU" or "BAULU" is believed to have originated from the phrase "buah tangan dari hulu" (a gift from upstream). This is because people in the past primarily used waterways as their main mode of transportation. Due to the noble values of the Malay people, they held great respect for their neighbors and relatives. Bahulu was often given as a gift and became a medium to strengthen relationships among them.
+</p>
     </div>
 </div>
 
