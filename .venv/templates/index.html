@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuih Raya Image Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+
+        form {
+            text-align: center;
+            background-color: #f9f9f9;
+            border: 1px dashed #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .flash-messages {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .flash-messages li {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .flash-messages .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .flash-messages .warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .flash-messages .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .result-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .result-image {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kuih Raya Image Classifier</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <label for="file-upload">Choose an image of Kuih Raya:</label>
+            <input type="file" name="file" id="file-upload" accept="image/*" required>
+            <input type="submit" value="Upload & Classify">
+        </form>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% if classification_result %}
+            <div class="result-section">
+                <h2>Classification Result:</h2>
+                <p><strong>Class:</strong> {{ classification_result.class }}</p>
+                <p><strong>Confidence:</strong> {{ classification_result.confidence }}</p>
+
+                {% if image_display_path %}
+                    <img src="{{ image_display_path }}" alt="Uploaded Image" class="result-image">
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
