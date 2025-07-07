@@ -74,17 +74,6 @@
       margin-bottom: 25px;
     }
 
-    label {
-      font-size: 1rem;
-      display: block;
-      margin-bottom: 10px;
-      color: var(--green);
-    }
-
-    input[type="file"] {
-      display: none;
-    }
-
     .custom-file-upload {
       display: inline-block;
       background-color: var(--green);
@@ -94,6 +83,7 @@
       cursor: pointer;
       font-size: 1rem;
       margin-bottom: 10px;
+      margin-right: 10px;
       transition: background-color 0.3s;
     }
 
@@ -262,7 +252,6 @@
       }
     }
 
-    /* === Spinner Loader === */
     #loader-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -275,6 +264,7 @@
       z-index: 10000;
       display: none;
     }
+
     .loader {
       border: 8px solid #f3f3f3;
       border-top: 8px solid var(--green);
@@ -283,6 +273,7 @@
       height: 60px;
       animation: spin 1s linear infinite;
     }
+
     @keyframes spin {
       0%   { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -315,10 +306,13 @@
     <h1>🎉 Hari Raya Biscuit Image Classifier 🌙</h1>
 
     <form method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
-      <label for="file-upload" class="custom-file-upload">
-        📷 Choose a Biscuit Image
-      </label>
-      <input type="file" name="file" id="file-upload" accept="image/*" required onchange="showFileName()" />
+      <label class="custom-file-upload" onclick="triggerFileInput(false)">📂 Upload from Gallery</label>
+      <label class="custom-file-upload" onclick="triggerFileInput(true)">📸 Take a Photo</label>
+
+      <!-- Hidden inputs -->
+      <input type="file" id="file-upload-gallery" name="file" accept="image/*" onchange="showFileName()" style="display: none;">
+      <input type="file" id="file-upload-camera" name="file" accept="image/*" capture="environment" onchange="showFileName()" style="display: none;">
+
       <div id="file-name" class="file-name">No image selected</div>
       <input type="submit" value="Upload & Classify" />
     </form>
@@ -353,9 +347,18 @@
   <!-- Scripts -->
   <script>
     function showFileName() {
-      const input = document.getElementById('file-upload');
-      const fileName = input.files.length > 0 ? input.files[0].name : 'No image selected';
-      document.getElementById('file-name').textContent = fileName;
+      const inputGallery = document.getElementById('file-upload-gallery');
+      const inputCamera = document.getElementById('file-upload-camera');
+      const file = inputGallery.files[0] || inputCamera.files[0];
+      document.getElementById('file-name').textContent = file ? file.name : 'No image selected';
+    }
+
+    function triggerFileInput(useCamera) {
+      if (useCamera) {
+        document.getElementById('file-upload-camera').click();
+      } else {
+        document.getElementById('file-upload-gallery').click();
+      }
     }
 
     function agreeConsent() {
