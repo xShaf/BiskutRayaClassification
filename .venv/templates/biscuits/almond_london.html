@@ -1,89 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: #fffbe7;
-            color: #444;
-            padding: 30px;
-            margin: 0;
-            transition: all 0.3s ease-in-out;
-        }
-        .container {
-            max-width: 700px;
-            margin: auto;
-            background: #fff;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #e76f51;
-        }
-        .buttons {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #ffcb77;
-            color: #333;
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #ffb347;
-        }
-        .content-section {
-            display: none;
-        }
-        .content-section.active {
-            display: block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hari Raya Kuih – Almond London</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #2e7d32;
+      --gold: #d4af37;
+      --soft-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Reem Kufi Ink', sans-serif;
+      background: url('{{ url_for("static", filename="assets/images/bg.jpg") }}') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-color: rgba(250, 255, 250, 0.85);
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px var(--soft-shadow);
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--green);
+      margin-bottom: 15px;
+    }
+
+    .image-preview {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .image-preview img {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 2px solid #c8e6c9;
+    }
+
+    .buttons {
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    button {
+      background-color: var(--green);
+      color: white;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1b5e20;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+    }
+
+    h3 {
+      color: var(--green);
+    }
+
+    a {
+      text-decoration: none;
+    }
+.image-square {
+  position: relative;
+  width: 50%;
+  padding-top: 50%; /* Makes it a square */
+  overflow: hidden;
+  border-radius: 15px;
+  border: 2px solid #c8e6c9;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-square img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+    @media (max-width: 480px) {
+      .container {
+        margin: 30px 15px;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        width: 100%;
+        margin: 8px 0;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <h2>Biscuit: Almond London</h2>
+  <div class="container">
+    <h2>Raya Biscuit: Almond London</h2>
+
+    <div class="image-preview">
+       <div class="image-square">
+    <img src="{{ url_for('static', filename='assets/images/almond_london.jpeg') }}" alt="Almond London">
+  </div>
+    </div>
 
     <div class="buttons">
-        <button onclick="showSection('recipe')">Show Recipe</button>
-        <button onclick="showSection('history')">Show History</button>
+      <button onclick="showSection('recipe')">📖 Recipe</button>
+      <button onclick="showSection('history')">📜 History</button>
     </div>
 
-    <div id="recipe" class="content-section active">
-        <h3>Recipe</h3>
-        <ul>
-            <li>250g butter</li>
-            <li>90g icing sugar</li>
-            <li>1 egg yolk</li>
-            <li>300g plain flour</li>
-            <li>100g corn flour</li>
-            <li>Roasted almonds (whole)</li>
-            <li>Cooking chocolate for coating</li>
-            <li>Chocolate rice or chopped nuts for garnish</li>
-        </ul>
-        <p>Instructions: Mix butter, sugar, egg yolk, and flour. Wrap dough around almonds. Bake at 170°C for 20 mins. Dip in melted chocolate and garnish.</p>
-    </div>
+   <div id="recipe" class="content-section active">
+  <h3>Recipe</h3>
+  <p><strong>Yield:</strong> ~125 pieces</p>
+  <p><strong>Prep Time:</strong> 45 min · <strong>Cook Time:</strong> 25 min · <strong>Total Time:</strong> ~1 hr 10 min</p>
+  <ul>
+    <li>250g whole almonds</li>
+    <li>100g chopped almonds</li>
+    <li>250g butter</li>
+    <li>94g icing sugar (~¾ cup)</li>
+    <li>2 egg yolks</li>
+    <li>250g all-purpose flour</li>
+    <li>200g corn flour</li>
+    <li>2 tbsp rice flour</li>
+    <li>50g cornflake crumbs (or almond powder)</li>
+    <li>2 tbsp milk powder</li>
+    <li>500g cooking chocolate (milk or dark)</li>
+    <li>1–2 tbsp shortening/vegetable fat</li>
+    <li>Chopped almonds for garnish</li>
+  </ul>
+  <ol>
+    <li>Roast both whole and chopped almonds at 150°C for 10 minutes (remove chopped almonds earlier).</li>
+    <li>Grind cornflakes into fine crumbs.</li>
+    <li>Sift together all-purpose flour, corn flour, and rice flour.</li>
+    <li>Beat butter and icing sugar until soft, then add egg yolks and mix well.</li>
+    <li>Gradually add in the sifted flours.</li>
+    <li>Add ground cornflakes and milk powder, knead into a soft dough.</li>
+    <li>Rest the dough for 10 minutes.</li>
+    <li>Shape small dough pieces (about 2cm long) and wrap around each whole almond.</li>
+    <li>Arrange on a baking tray lined with parchment paper and bake at 170°C for 10–15 minutes.</li>
+    <li>Let them cool completely on a wire rack.</li>
+    <li>Melt chocolate using the double-boil method and mix in shortening.</li>
+    <li>Dip each biscuit into the chocolate, place in small paper cups and sprinkle with chopped almonds.</li>
+    <li>Let the chocolate set completely before storing in an airtight container.</li>
+  </ol>
+  <p><em>Tip:</em> Ensure the cookies are fully cooled before dipping in chocolate to prevent melting. Use shortening for a shiny and firm coating.</p>
 
-    <div id="history" class="content-section">
-        <h3>History</h3>
-        <p>Almond London cookies are popular festive treats in Malaysia, particularly during Hari Raya. These bite-sized biscuits consist of crunchy almonds wrapped in a buttery dough, coated in chocolate, and topped with sprinkles or nuts. The name likely references the European influence on Malaysian baking styles.</p>
-    </div>
+  <p style="font-size: 0.9em; margin-top: 20px;">
+
+    <strong>Credit:</strong> <a href="https://resepichenom.com/resepi/biskut-almond-london" target="_blank" style="color: #2e7d32;">
+      RecipeCheNom
+    </a>
+  </p>
 </div>
 
-<script>
+
+    <div id="history" class="content-section">
+      <h3>History</h3>
+      <p>Almond London biscuits are a festive favourite in Malaysia during Hari Raya. They combine crunchy roasted almonds, buttery dough, and smooth chocolate coating—representing a fusion of modern taste with traditional celebration. The name ‘London’ reflects Western influence in local baking.</p>
+    </div>
+
+    <div class="buttons">
+      <a href="/"><button>🏠 Back to Homepage</button></a>
+    </div>
+  </div>
+
+  <script>
     function showSection(section) {
-        document.getElementById('recipe').classList.remove('active');
-        document.getElementById('history').classList.remove('active');
-        document.getElementById(section).classList.add('active');
+      document.getElementById('recipe').classList.remove('active');
+      document.getElementById('history').classList.remove('active');
+      document.getElementById(section).classList.add('active');
     }
+  </script>
+
+<div id="google_translate_element" style="position: fixed; top: 10px; right: 10px; z-index: 9999;"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',  // or 'ms' for Malay
+      includedLanguages: 'en,ms,zh-CN', // Choose languages to include
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
 </script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>

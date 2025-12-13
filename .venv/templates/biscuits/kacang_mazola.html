@@ -1,89 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: #fffbe7;
-            color: #444;
-            padding: 30px;
-            margin: 0;
-            transition: all 0.3s ease-in-out;
-        }
-        .container {
-            max-width: 700px;
-            margin: auto;
-            background: #fff;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #e76f51;
-        }
-        .buttons {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #ffcb77;
-            color: #333;
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #ffb347;
-        }
-        .content-section {
-            display: none;
-        }
-        .content-section.active {
-            display: block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kuih Raya – Kacang Mazola</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #2e7d32;
+      --gold: #d4af37;
+      --soft-shadow: rgba(0,0,0,0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Reem Kufi Ink', sans-serif;
+      background: url('{{ url_for("static", filename="assets/images/bg.jpg") }}') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px var(--soft-shadow);
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .image-preview {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .image-square {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 2px solid #c8e6c9;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-square img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .buttons {
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    button {
+      background-color: var(--green);
+      color: white;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1b5e20;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+    }
+
+    h3 {
+      color: var(--green);
+    }
+
+    .credit {
+      margin-top: 30px;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+
+    .credit a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .credit a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin: 30px 15px;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        width: 100%;
+        margin: 8px 0;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <h2>Biscuit: Almond London</h2>
+  <div class="container">
+    <h2>Biscuit: Kacang Mazola</h2>
+
+    <div class="image-preview">
+      <div class="image-square">
+        <img src="{{ url_for('static', filename='assets/images/kacang_mazola.jpeg') }}" alt="Kacang Mazola">
+      </div>
+    </div>
 
     <div class="buttons">
-        <button onclick="showSection('recipe')">Show Recipe</button>
-        <button onclick="showSection('history')">Show History</button>
+      <button onclick="showSection('recipe')">📖 Show Recipe</button>
+      <button onclick="showSection('history')">📜 Show History</button>
     </div>
 
     <div id="recipe" class="content-section active">
-        <h3>Recipe</h3>
-        <ul>
-            <li>250g butter</li>
-            <li>90g icing sugar</li>
-            <li>1 egg yolk</li>
-            <li>300g plain flour</li>
-            <li>100g corn flour</li>
-            <li>Roasted almonds (whole)</li>
-            <li>Cooking chocolate for coating</li>
-            <li>Chocolate rice or chopped nuts for garnish</li>
-        </ul>
-        <p>Instructions: Mix butter, sugar, egg yolk, and flour. Wrap dough around almonds. Bake at 170°C for 20 mins. Dip in melted chocolate and garnish.</p>
+      <h3>Recipe</h3>
+      <ul>
+        <li>250g butter</li>
+        <li>3 tbsp sweetened condensed milk</li>
+        <li>2 tbsp ghee</li>
+        <li>1 egg yolk</li>
+        <li>1 tsp vanilla essence</li>
+        <li>2 tbsp powdered milk</li>
+        <li>3 1/4 cups wheat flour</li>
+        <li>2 tbsp corn flour</li>
+        <li>2 tbsp custard flour</li>
+        <li>A little yellow food coloring</li>
+        <li>2 egg yolks (for egg wash)</li>
+        <li>1/4 cup fresh milk</li>
+        <li>2 drops yellow coloring (for egg wash)</li>
+        <li>Pineapple jam (shaped into balls)</li>
+      </ul>
+
+      <h3>Instructions</h3>
+      <ol>
+        <li>Mix butter, condensed milk, ghee, egg yolk, and vanilla essence together until creamy.</li>
+        <li>Combine all flours and food coloring, then gradually mix with the wet ingredients to form a soft dough.</li>
+        <li>Take small pieces of dough, flatten slightly, insert pineapple jam, and shape into balls.</li>
+        <li>Mix egg yolks, fresh milk, and food coloring for the egg wash. Brush the tops of each cookie.</li>
+        <li>Bake at 170°C for 20–23 minutes until golden brown. Let cool before storing.</li>
+      </ol>
+
+      <p class="credit">
+        Credit: <a href="https://cookpad.com/my/recipes/24568719?ref=search&search_term=resepi+biskut+kacang+mazola" target="_blank">cook_18547228</a>
+      </p>
     </div>
 
     <div id="history" class="content-section">
-        <h3>History</h3>
-        <p>Almond London cookies are popular festive treats in Malaysia, particularly during Hari Raya. These bite-sized biscuits consist of crunchy almonds wrapped in a buttery dough, coated in chocolate, and topped with sprinkles or nuts. The name likely references the European influence on Malaysian baking styles.</p>
+      <h3>History</h3>
+      <p>
+        Biskut Kacang Mazola became popular in Malaysia around the mid-20th century, inspired by local love for peanuts and the use of corn oil brands like Mazola, which gave the cookie its name. Traditionally made during festive seasons like Hari Raya, these peanut cookies became a staple on Malaysian kuih raya tables because of their rich, nutty flavor, crumbly texture, and simple, affordable ingredients. Over time, the recipe was shared and adapted among families, becoming a beloved classic passed down through generations.
+      </p>
     </div>
-</div>
 
-<script>
+    <div class="buttons">
+      <a href="/"><button>🏠 Back to Homepage</button></a>
+    </div>
+  </div>
+
+  <script>
     function showSection(section) {
-        document.getElementById('recipe').classList.remove('active');
-        document.getElementById('history').classList.remove('active');
-        document.getElementById(section).classList.add('active');
+      document.getElementById('recipe').classList.remove('active');
+      document.getElementById('history').classList.remove('active');
+      document.getElementById(section).classList.add('active');
     }
+  </script>
+
+<div id="google_translate_element" style="position: fixed; top: 10px; right: 10px; z-index: 9999;"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',  // or 'ms' for Malay
+      includedLanguages: 'en,ms,zh-CN', // Choose languages to include
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
 </script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
