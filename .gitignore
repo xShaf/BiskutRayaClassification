@@ -9,4 +9,4 @@ uploads/
 .vscode/
 .idea/
 *.log
-.venv/
+/.venv/

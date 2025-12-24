@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hari Raya Kuih – Kuih Bangkit</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #2e7d32;
+      --gold: #d4af37;
+      --soft-shadow: rgba(0,0,0,0.1);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin:0;
+      font-family:'Reem Kufi Ink', sans-serif;
+      background: url('{{ url_for("static", filename="assets/images/bg.jpg") }}') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      color:#333;
+    }
+    body::before {
+      content:"";
+      position:fixed; inset:0;
+      background-color: rgba(250,255,250,0.85);
+      z-index:0;
+    }
+    .container {
+      max-width:800px;
+      margin:60px auto;
+      background:white;
+      padding:30px 20px;
+      border-radius:20px;
+      box-shadow:0 10px 25px var(--soft-shadow);
+      position:relative;
+      z-index:1;
+    }
+    h2 { text-align:center; color:var(--green); margin-bottom:15px; }
+    .image-preview { text-align:center; margin-bottom:25px; }
+    .image-square {
+      position:relative;
+      width:100%; padding-top:100%;
+      border-radius:15px; overflow:hidden;
+      border:2px solid #c8e6c9;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .image-square img {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      object-fit:cover;
+    }
+    .buttons { text-align:center; margin:25px 0; }
+    button {
+      background-color:var(--green);
+      color:white;
+      padding:10px 20px;
+      margin:5px;
+      border:none;
+      border-radius:10px;
+      font-size:16px;
+      cursor:pointer;
+      transition:background-color 0.3s ease;
+    }
+    button:hover { background-color:#1b5e20; }
+    .content-section { display:none; }
+    .content-section.active { display:block; }
+    ul, ol { padding-left:20px; }
+    h3 { color:var(--green); }
+    .credit {
+      margin-top:30px;
+      font-style:italic;
+      font-size:0.9em;
+    }
+    .credit a {
+      color:var(--green);
+      text-decoration:none;
+    }
+    .credit a:hover { text-decoration:underline; }
+    @media (max-width:480px) {
+      .container { margin:30px 15px; padding:20px; }
+      h2 { font-size:1.5rem; }
+      button { width:100%; margin:8px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Biscuit: Kuih Bangkit</h2>
+
+    <div class="image-preview">
+      <div class="image-square">
+        <img src="{{ url_for('static', filename='assets/images/bangkit.jpeg') }}" alt="Biscuit Bangkit">
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button onclick="showSection('recipe')">📖 Recipe</button>
+      <button onclick="showSection('history')">📜 History</button>
+    </div>
+
+    <div id="recipe" class="content-section active">
+      <h3>Recipe</h3>
+      <p><strong>Yield:</strong> 20 pieces</p>
+      <p><strong>Prep Time:</strong> 30 min · <strong>Cook Time:</strong> 25 min · <strong>Total Time:</strong> 55 min</p>
+      <ul>
+        <li>330 g tapioca (cassava) flour</li>
+        <li>Pandan leaves (for aroma)</li>
+        <li>30 g shortening</li>
+        <li>130 g icing sugar</li>
+        <li>1 grade-A egg yolk</li>
+        <li>130 ml thick coconut milk</li>
+        <li>Pinch of salt</li>
+      </ul>
+      <ol>
+        <li>In a pan over low heat, toast tapioca flour with pandan leaves until lightly yellow and fragrant.</li>
+        <li>Sift the toasted flour and let cool completely.</li>
+        <li>Beat icing sugar and egg yolk until light and creamy.</li>
+        <li>Add 100 ml coconut milk and mix until combined.</li>
+        <li>Add the cooled tapioca flour and salt, knead until dough no longer sticks to hands.</li>
+        <li>Add more coconut milk gradually if needed, knead to soft dough.</li>
+        <li>Cover dough with a damp cloth and rest for 30 minutes.</li>
+        <li>Shape dough using a mold, place on lined baking tray, bake at 170 °C for 20–25 minutes or until done.</li>
+      </ol>
+
+      <p class="credit">
+        <strong>Credit:</strong>
+        <a href="https://resepichenom.com/resepi/biskut-bangkit" target="_blank">Resepi Che Nom – Biskut Bangkit</a>
+      </p>
+    </div>
+
+    <div id="history" class="content-section">
+      <h3>History of Kuih Bangkit</h3>
+      <p>Kuih bangkit is a delicate, melt-in-your-mouth cookie deeply rooted in Malay, Peranakan, and Indonesian culture. Its name, “bangkit,” means “to rise,” reflecting how it puffs up during baking.</p>
+
+      <h4>Origins & Cultural Significance</h4>
+      <p><strong>Malay & Indonesian</strong><br>
+      Thought to originate in the Malay Archipelago, this biscuit is commonly enjoyed during Hari Raya, Chinese New Year, and weddings.</p>
+      <p><strong>Peranakan (Nyonya)</strong><br>
+      Refined by Straits Chinese families using tapioca flour and wooden molds that imprint symbolic designs.</p>
+      <p><strong>Dutch Colonial Influence</strong><br>
+      Some historians link the cookie’s light, buttery texture to Dutch baking techniques.</p>
+    </div>
+
+    <div class="buttons">
+      <a href="/"><button>🏠 Back to Homepage</button></a>
+    </div>
+  </div>
+
+  <script>
+    function showSection(section) {
+      document.getElementById('recipe').classList.remove('active');
+      document.getElementById('history').classList.remove('active');
+      document.getElementById(section).classList.add('active');
+    }
+  </script>
+
+<div id="google_translate_element" style="position: fixed; top: 10px; right: 10px; z-index: 9999;"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',  // or 'ms' for Malay
+      includedLanguages: 'en,ms,zh-CN', // Choose languages to include
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

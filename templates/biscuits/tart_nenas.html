@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kuih Raya – Tart Nenas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #2e7d32;
+      --gold: #d4af37;
+      --soft-shadow: rgba(0,0,0,0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Reem Kufi Ink', sans-serif;
+      background: url('{{ url_for("static", filename="assets/images/bg.jpg") }}') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px var(--soft-shadow);
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .image-preview {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .image-square {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 2px solid #c8e6c9;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-square img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .buttons {
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    button {
+      background-color: var(--green);
+      color: white;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1b5e20;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+    }
+
+    h3 {
+      color: var(--green);
+    }
+
+    .credit {
+      margin-top: 30px;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+
+    .credit a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .credit a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin: 30px 15px;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        width: 100%;
+        margin: 8px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Biscuit: Tart Nenas</h2>
+
+    <div class="image-preview">
+      <div class="image-square">
+        <img src="{{ url_for('static', filename='assets/images/tart_nenas.jpeg') }}" alt="Tart Nenas">
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button onclick="showSection('recipe')">📖 Show Recipe</button>
+      <button onclick="showSection('history')">📜 Show History</button>
+    </div>
+
+    <div id="recipe" class="content-section active">
+      <h3>Recipe</h3>
+      <ul>
+        <li>250g butter</li>
+        <li>3 tbsp sweetened condensed milk</li>
+        <li>2 tbsp ghee</li>
+        <li>1 egg yolk</li>
+        <li>1 tsp vanilla essence</li>
+        <li>2 tbsp powdered milk</li>
+        <li>3 1/4 cups wheat flour</li>
+        <li>2 tbsp corn flour</li>
+        <li>2 tbsp custard flour</li>
+        <li>A little yellow food colouring</li>
+        <li>2 egg yolks</li>
+        <li>1/4 cup fresh milk</li>
+        <li>2 drops lemon yellow food colouring (for egg wash)</li>
+        <li>Pineapple jam (shaped into small balls)</li>
+      </ul>
+
+      <h3>Instructions</h3>
+      <ol>
+        <li>Mix butter, condensed milk, ghee, egg yolk, vanilla, and food colouring. Combine well.</li>
+        <li>Add corn flour, custard powder, milk powder, and wheat flour bit by bit. Knead into smooth dough.</li>
+        <li>Grease a tray. Use a tart mold to press out dough. Place a ball of pineapple jam and roll neatly.</li>
+        <li>Mix egg yolks, milk, and yellow colouring. Brush onto tarts as egg wash.</li>
+        <li>Bake at 160°C for 25 mins or until slightly golden. Let cool before storing.</li>
+      </ol>
+
+      <p class="credit">
+        Credit: <a href="https://cookpad.com/my/recipes/14986638?ref=search&search_term=tart+nanas" target="_blank">DapurKakMuni</a>
+      </p>
+    </div>
+
+    <div id="history" class="content-section">
+      <h3>History</h3>
+      <p>
+        Tart nenas became a cherished kuih raya in Malaysia as pineapples thrived in the local tropical climate, making the fruit both accessible and affordable. Over the decades, Malaysians began turning sweet pineapple jam into the star ingredient of these buttery, melt-in-the-mouth tarts.
+      </p>
+      <p>
+        Today, pineapple tarts are deeply rooted in Malaysian festive culture, especially during Hari Raya, symbolizing warmth, hospitality, and the joy of sharing with family and friends.
+      </p>
+    </div>
+
+    <div class="buttons">
+      <a href="/"><button>🏠 Back to Homepage</button></a>
+    </div>
+  </div>
+
+  <script>
+    function showSection(section) {
+      document.getElementById('recipe').classList.remove('active');
+      document.getElementById('history').classList.remove('active');
+      document.getElementById(section).classList.add('active');
+    }
+  </script>
+
+<div id="google_translate_element" style="position: fixed; top: 10px; right: 10px; z-index: 9999;"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',  // or 'ms' for Malay
+      includedLanguages: 'en,ms,zh-CN', // Choose languages to include
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
