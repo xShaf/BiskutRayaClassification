@@ -374,7 +374,7 @@ class Schema(base.SchemaABC, metaclass=SchemaMeta):
 
                 class MySchema2(Schema):
                     # Type checkers will check attributes
-                    class Meta(Schema.Opts):
+                    class Meta(Schema.Meta):
                         additional = True  # Incompatible types in assignment
 
         .. versionremoved:: 3.0.0b7 Remove ``strict``.
@@ -1139,7 +1139,7 @@ class Schema(base.SchemaABC, metaclass=SchemaMeta):
                 msg = (
                     f'Field for "{field_name}" must be declared as a '
                     "Field instance, not a class. "
-                    f'Did you mean "fields.{field_obj.__name__}()"?'  # type: ignore[attr-defined]
+                    f'Did you mean "fields.{field_obj.__name__}()"?'
                 )
                 raise TypeError(msg) from error
             raise
